@@ -82,4 +82,4 @@ production:
   <<: *default
   database: register_api_production
   username: register_api
-  password: <%= ENV['BLOGGG_DATABASE_PASSWORD'] %>
+  password: <%= ENV['REGISTER_API_DATABASE_PASSWORD'] %>
