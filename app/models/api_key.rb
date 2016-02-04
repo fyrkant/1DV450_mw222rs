@@ -1,5 +1,5 @@
 class ApiKey < ActiveRecord::Base
-  before_save :generate_api_key
+  before_create :generate_api_key
 
   private
 

@@ -1,0 +1,6 @@
+tr
+  td = api_key.name
+  td = api_key.key
+  /td = link_to 'Show', api_key
+  td = link_to 'Edit', edit_api_key_path(api_key)
+  td = link_to 'Destroy', api_key, data: {:confirm => 'Are you sure?'}, :method => :delete

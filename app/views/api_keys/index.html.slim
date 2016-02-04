@@ -1,0 +1,17 @@
+h1 Listing api_keys
+
+table
+  thead
+    tr
+      th Name
+      th Key
+      /th
+      th
+      th
+
+  tbody
+    = render @api_keys
+
+br
+
+= link_to 'New Api key', new_api_key_path
