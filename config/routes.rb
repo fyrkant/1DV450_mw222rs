@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :api_keys
   root "api_keys#index"
   # The priority is based upon order of creation: first created -> highest priority.
