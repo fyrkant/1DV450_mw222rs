@@ -1,7 +1,9 @@
-require 'test_helper'
+require "test_helper"
 
 class ApiKeysControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
   setup do
+    sign_in users :one
     @api_key = api_keys(:one)
   end
 
@@ -17,8 +19,8 @@ class ApiKeysControllerTest < ActionController::TestCase
   end
 
   test "should create api_key" do
-    assert_difference('ApiKey.count') do
-      post :create, api_key: { key: @api_key.key, name: @api_key.name }
+    assert_difference("ApiKey.count") do
+      post :create, api_key: { name: @api_key.name }
     end
 
     assert_redirected_to api_key_path(assigns(:api_key))
@@ -40,7 +42,7 @@ class ApiKeysControllerTest < ActionController::TestCase
   end
 
   test "should destroy api_key" do
-    assert_difference('ApiKey.count', -1) do
+    assert_difference("ApiKey.count", -1) do
       delete :destroy, id: @api_key
     end
 

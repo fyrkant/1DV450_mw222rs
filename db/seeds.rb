@@ -6,14 +6,17 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 ApiKey.destroy_all
+# User.destroy_all
 
 ApiKey.create!(
   [
     {
-      name: "Stupid App #1"
+      name: "Stupid App #1",
+      user_id: 1
     },
     {
-      name: "Stupid App #2"
+      name: "Stupid App #2",
+      user_id: 1
     }
   ])
 
