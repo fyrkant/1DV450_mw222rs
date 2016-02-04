@@ -5,3 +5,16 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+ApiKey.destroy_all
+
+ApiKey.create!(
+  [
+    {
+      name: "Stupid App #1"
+    },
+    {
+      name: "Stupid App #2"
+    }
+  ])
+
+p "Created #{ApiKey.count} api keys"
