@@ -1,4 +1,5 @@
 class ApiKey < ActiveRecord::Base
+  validates :name, presence: true
   before_create :generate_api_key
 
   private
