@@ -3,9 +3,10 @@ h1 Listing of your API keys
 table
   thead
     tr
-      th Name
+      th App Name
       th Key
-      /th
+      - if admin_signed_in?
+        th App Creator
       th
       th
 

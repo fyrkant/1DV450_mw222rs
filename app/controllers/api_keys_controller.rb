@@ -5,7 +5,11 @@ class ApiKeysController < ApplicationController
   # GET /api_keys
   # GET /api_keys.json
   def index
-    @api_keys = current_user.api_keys
+    @api_keys = if admin_signed_in?
+                  ApiKey.all
+                else
+                  current_user.api_keys
+                end
   end
 
   # GET /api_keys/1
@@ -55,7 +59,7 @@ class ApiKeysController < ApplicationController
   # DELETE /api_keys/1
   # DELETE /api_keys/1.json
   def destroy
-    @api_key.destroy
+    @api_key.destroy if @api_key.user == current_user || admin_signed_in?
     respond_to do |format|
       format.html { redirect_to api_keys_url, notice: "API key was successfully destroyed." }
       format.json { head :no_content }
@@ -68,7 +72,7 @@ class ApiKeysController < ApplicationController
 
   def set_api_key
     key = ApiKey.find(params[:id])
-    @api_key = if key.user == current_user
+    @api_key = if key.user == current_user || admin_signed_in?
                  key
                else
                  redirect_to root_path
