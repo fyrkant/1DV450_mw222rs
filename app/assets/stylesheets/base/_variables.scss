@@ -1,6 +1,8 @@
 // Typography
 $base-font-family: $helvetica;
 $heading-font-family: $base-font-family;
+$sans-serif: 'Questrial', sans-serif;
+$serif: 'Sanchez', serif;
 
 // Font Sizes
 $base-font-size: 1em;
@@ -20,6 +22,12 @@ $blue: #1565c0;
 $dark-gray: #333;
 $medium-gray: #999;
 $light-gray: #ddd;
+
+$orange: #CC7A18;
+$brown: #997140;
+$red: #FF4404;
+$turqoise: #44FFA1;
+$green: #46CC63;
 
 // Font Colors
 $base-font-color: $dark-gray;

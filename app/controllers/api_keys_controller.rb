@@ -59,7 +59,7 @@ class ApiKeysController < ApplicationController
   # DELETE /api_keys/1
   # DELETE /api_keys/1.json
   def destroy
-    @api_key.destroy if @api.user == current_user || current_user.admin?
+    @api_key.destroy if @api_key.user == current_user || current_user.admin?
     respond_to do |format|
       format.html { redirect_to api_keys_url, notice: "API key was successfully destroyed." }
       format.json { head :no_content }

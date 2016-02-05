@@ -5,7 +5,9 @@ body {
   line-height: $base-line-height;
 }
 
-h1,
+h1 {
+  font-size: 2 em;
+}
 h2,
 h3,
 h4,
@@ -29,8 +31,10 @@ a {
   &:active,
   &:focus,
   &:hover {
-    color: shade($action-color, 25%);
+    color: shade($dark-gray, 25%);
   }
+
+
 }
 
 hr {
@@ -45,4 +49,58 @@ img,
 picture {
   margin: 0;
   max-width: 100%;
+}
+.btn {
+  -webkit-border-radius: 5;
+  -moz-border-radius: 5;
+  border-radius: 5px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 19px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  &.new-key-button {
+    background-color: $green;
+    display:inline;
+    &:hover {
+      color: shade(white, 25%);
+      background-color: shade($green, 25%);
+    }
+  }
+  &.remove-key-button {
+    margin-left: 10px;
+    background-color: $red;
+    display: inline;
+    &:hover {
+      color: shade(white, 25%);
+      background-color: shade($red, 25%);
+    }
+  }
+  &.edit-key-button {
+    background-color: $orange;
+    display: inline;
+    &:hover {
+      color: shade(white, 25%);
+      background-color: shade($orange, 25%);
+    }
+  }
+  &.sign-in-button {
+    background-color: $green;
+    display: inline;
+    &:hover {
+      color: shade(white, 25%);
+      background-color: shade($green, 25%);
+    }
+  }
+  &.sign-up-button {
+    background-color: $green;
+    display: inline;
+    &:hover {
+      color: shade(white, 25%);
+      background-color: shade($green, 25%);
+    }
+  }
+  .sign-out-button {
+
+  }
 }

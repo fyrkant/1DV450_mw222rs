@@ -11,7 +11,9 @@ ApiKey.destroy_all
 User.create!(
   email: "admin@mail.com",
   password: "adminpassword",
-  password_confirmation: "adminpassword"
+  password_confirmation: "adminpassword",
+  admin: true
+
 )
 p "Created an admin user"
 
