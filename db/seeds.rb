@@ -5,27 +5,26 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-Admin.destroy_all
 User.destroy_all
 ApiKey.destroy_all
 
-Admin.create!(
-  email: "root@foo.com",
-  password: "sosecretpass",
-  password_confirmation: "sosecretpass"
+User.create!(
+  email: "admin@mail.com",
+  password: "adminpassword",
+  password_confirmation: "adminpassword"
 )
-p "Created admin"
+p "Created an admin user"
 
-user1 = User.create!(
-  email: "mail@test.com",
-  password: "sosecretpass",
-  password_confirmation: "sosecretpass"
+user_john = User.create!(
+  email: "john@doe.com",
+  password: "agreatpassword",
+  password_confirmation: "agreatpassword"
 )
 
-user2 = User.create!(
-  email: "mail2@test.com",
-  password: "sosecretpass",
-  password_confirmation: "sosecretpass"
+user_jane = User.create!(
+  email: "jane@doe.com",
+  password: "evengreaterpassword",
+  password_confirmation: "evengreaterpassword"
 )
 
 p "Created #{User.count} users"
@@ -33,12 +32,12 @@ p "Created #{User.count} users"
 ApiKey.create!(
   [
     {
-      name: "Stupid App #1",
-      user_id: user1.id
+      name: "Johns application",
+      user_id: user_john.id
     },
     {
-      name: "Stupid App #2",
-      user_id: user2.id
+      name: "Janes application",
+      user_id: user_jane.id
     }
   ])
 

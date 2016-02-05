@@ -1,7 +1,7 @@
 tr
   td = api_key.name
   td = api_key.key
-  - if admin_signed_in?
+  - if current_user.admin?
     td = api_key.user.email
   td = link_to 'Edit', edit_api_key_path(api_key)
-  td = link_to (admin_signed_in? ? 'Revoke' : 'Remove'), api_key, data: {:confirm => 'Are you sure?'}, :method => :delete
+  td = link_to (current_user.admin? ? 'Revoke' : 'Remove'), api_key, data: {:confirm => 'Are you sure?'}, :method => :delete
