@@ -1,6 +1,4 @@
 class User < ActiveRecord::Base
-  include Gravtastic
-  gravtastic
   has_many :api_keys
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
