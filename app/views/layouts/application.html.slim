@@ -8,18 +8,21 @@ html
     = csrf_meta_tags
 
   body
-    .wrapper
+    nav
+      .nav-wrapper
+        ul#nav-mobile.right
+          - if current_user
+            li Logged in as #{current_user.email} #{link_to "Sign out", destroy_user_session_path, method: :delete, class: "waves-effect waves-teal btn"}
+          - else
+            li
+              = link_to_unless_current "Sign in", new_user_session_path, class: 'sign-in-button btn' do
+            li
+              = link_to_unless_current "Sign up", new_user_registration_path, class: 'sign-up-button btn' do
+
+    .container
       - if notice || alert
         div id='flash' class=(notice ? 'flash-notice' : 'flash-alert')
           span
           = notice || alert
-
-      - if current_user
-        h2 Logged in as #{current_user.email} - #{link_to "Sign out", destroy_user_session_path, method: :delete}
-      - else
-        = link_to_unless_current "Sign in", new_user_session_path, class: 'sign-in-button btn' do
-        = link_to_unless_current "Sign up", new_user_registration_path, class: 'sign-up-button btn' do
-
-
 
       == yield

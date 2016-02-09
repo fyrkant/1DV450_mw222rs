@@ -1,28 +1,9 @@
-@import "bourbon";
-@import "base/base";
-@import "neat";
+// @import "bourbon";
+// @import "base/base";
+// @import "neat";
 @import "flash";
+@import "materialize";
 // @import "scaffolds";
 
-body{
-  // background-color: #999;
-}
 
-.wrapper {
-  @include outer-container;
-
-  border: $base-border;
-  padding: 1em;
-
-  .form {
-    @include span-columns(6);
-    @include shift(3);
-  }
-
-  background-color: #fff;
-
-
-
-
-}
 

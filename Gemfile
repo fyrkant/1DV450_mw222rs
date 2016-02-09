@@ -7,16 +7,19 @@ gem "pg"
 
 gem "sass-rails", "~> 5.0"
 # Bourbon is a sass utility library and neat is a cool grid.
-gem "bourbon"
-gem "neat"
+# gem "bourbon"
+# gem "neat"
+gem "materialize-sass"
 
 gem "slim-rails"
 gem "uglifier", ">= 1.3.0"
 gem "coffee-rails", "~> 4.1.0"
 gem "jquery-rails"
+gem "jquery-ui-rails"
 gem "turbolinks"
 gem "jbuilder", "~> 2.0"
 gem "devise", "~> 3.5", ">= 3.5.6"
+gem "faker"
 
 gem "sdoc", "~> 0.4.0", group: :doc
 

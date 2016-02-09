@@ -1,46 +1,40 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+require "faker"
+
+start = Time.current
+
 User.destroy_all
 ApiKey.destroy_all
 
+test_password = "testpass"
+
 User.create!(
   email: "admin@mail.com",
-  password: "adminpassword",
-  password_confirmation: "adminpassword",
+  password: test_password,
+  password_confirmation: test_password,
   admin: true
 
 )
 p "Created an admin user"
 
-user_john = User.create!(
-  email: "john@doe.com",
-  password: "agreatpassword",
-  password_confirmation: "agreatpassword"
-)
+50.times do
+  first_name = Faker::Name.first_name
+  last_name = Faker::Name.last_name
+  User.create!(
+    email: Faker::Internet.email(first_name + "." + last_name),
+    password: test_password,
+    password_confirmation: test_password
+  )
+end
 
-user_jane = User.create!(
-  email: "jane@doe.com",
-  password: "evengreaterpassword",
-  password_confirmation: "evengreaterpassword"
-)
+p "Created #{User.count - 1} users" # the minus is the admin...
 
-p "Created #{User.count} users"
-
-ApiKey.create!(
-  [
-    {
-      name: "Johns application",
-      user_id: user_john.id
-    },
-    {
-      name: "Janes application",
-      user_id: user_jane.id
-    }
-  ])
+100.times do
+  ApiKey.create!(
+    name: Faker::App.name,
+    user_id: User.all.ids.sample
+  )
+end
 
 p "Created #{ApiKey.count} api keys"
+
+p "Seed created in #{(Time.current - start).round(2)} seconds"
