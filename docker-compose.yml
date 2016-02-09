@@ -1,0 +1,8 @@
+db:
+  image: postgres
+  ports:
+    - "5432:5432"
+  environment:
+    - POSTGRES_DB=register_api_development
+    - POSTGRES_USER=app_user
+    - POSTGRES_PASSWORD=secret
