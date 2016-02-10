@@ -5,11 +5,7 @@ class ApiKeysController < ApplicationController
   # GET /api_keys
   # GET /api_keys.json
   def index
-    @api_keys = if current_user.admin?
-                  ApiKey.all
-                else
-                  current_user.api_keys
-                end
+    @api_keys = current_user.admin? ? ApiKey.all : current_user.api_keys
   end
 
   # GET /api_keys/1

@@ -40,9 +40,6 @@ GEM
     bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bourbon (4.2.6)
-      sass (~> 3.4)
-      thor (~> 0.19)
     builder (3.2.2)
     byebug (8.2.2)
     coderay (1.1.0)
@@ -116,9 +113,6 @@ GEM
     mini_portile2 (2.0.0)
     minitest (5.8.4)
     multi_json (1.11.2)
-    neat (1.7.2)
-      bourbon (>= 4.0)
-      sass (>= 3.3)
     nenv (0.2.0)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
@@ -224,7 +218,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bourbon
   byebug
   coffee-rails (~> 4.1.0)
   devise (~> 3.5, >= 3.5.6)
@@ -235,7 +228,6 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   materialize-sass
-  neat
   pg
   rack-livereload
   rails (= 4.2.5)
