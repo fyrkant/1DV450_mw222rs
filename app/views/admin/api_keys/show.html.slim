@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @api_key.name
+p
+  strong Key:
+  = @api_key.key
+
+= link_to 'Edit', edit_api_key_path(@api_key)
+'|
+= link_to 'Back', api_keys_path

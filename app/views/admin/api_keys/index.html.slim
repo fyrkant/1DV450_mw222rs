@@ -1,0 +1,18 @@
+h1 ADMIN! Listing all users registered API keys
+= link_to 'Create a New API key', new_api_key_path, class: "new-key-button btn"
+- if @api_keys.size > 0
+  table
+    thead
+      tr
+        th App Name
+        th Key
+        - if current_user.admin?
+          th App Creator
+        th
+
+    tbody
+      = render @api_keys
+
+  br
+- else
+  p No API keys yet... Create a new one!
