@@ -15,8 +15,11 @@ $success-color: #e6efc2 !default;
   position: absolute;
   margin-left: auto;
   margin-right: auto;
+  top: 5px;
   left: 0;
   right: 0;
+  z-index: 2;
+  animation: flash-drop .5s ease-in;
 
   a {
     color: darken($color, 70%);
@@ -43,4 +46,15 @@ $success-color: #e6efc2 !default;
 
 .flash-success {
   @include flash($success-color);
+}
+@keyframes flash-drop {
+  0% {
+    transform: translateY(-500px);
+  }
+  80% {
+     transform: translateY(0);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
