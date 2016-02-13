@@ -18,6 +18,6 @@ Rails.application.routes.draw do
   resources :api_keys
 
   namespace :admin do
-    resources :api_keys
+    resources :api_keys, except: [:new, :create, :edit]
   end
 end
