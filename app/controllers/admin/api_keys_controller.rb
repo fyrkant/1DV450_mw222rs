@@ -1,7 +1,7 @@
 class Admin::ApiKeysController < ApplicationController
   before_action :authenticate_admin
   def index
-    @api_keys = ApiKey.all
+    @api_keys = ApiKey.all.search(params[:keyword])
   end
 
   def new
