@@ -1,5 +1,11 @@
-h1 ADMIN! Listing all users registered API keys
-/= link_to 'Create a New API key', new_api_key_path, class: "new-key-button btn"
+h1 Admin interface
+form
+  .row
+    .input-field.col.s6
+      i.mdi-action-search.prefix
+      input#icon_prefix.validate type="text" value=("#{params[:keyword]}") name="keyword" /
+      label for="icon_prefix"  Search for application name
+
 - if @api_keys.size > 0
   table
     thead
@@ -15,4 +21,4 @@ h1 ADMIN! Listing all users registered API keys
 
   br
 - else
-  p No API keys yet... Create a new one!
+  p No API keys to mess with yet.
