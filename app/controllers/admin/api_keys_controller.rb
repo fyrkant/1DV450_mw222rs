@@ -3,7 +3,9 @@ class Admin::ApiKeysController < ApplicationController
   before_action :set_api_keys, only: :destroy
 
   def index
-    @api_keys = ApiKey.all.search(params[:keyword])
+    @api_keys = ApiKey.includes(:user)
+                      .search(params[:keyword])
+                      .filter(params[:filter])
   end
 
   def destroy

@@ -4,6 +4,7 @@ class ApiKey < ActiveRecord::Base
   belongs_to :user
   before_create :generate_api_key
   scope :search, ->(keyword) { where("name ILIKE ?", "%#{keyword.downcase}%") if keyword.present? }
+  scope :filter, ->(email) { joins(:user).where('users.email = ?', email) if email.present? }
 
   private
 

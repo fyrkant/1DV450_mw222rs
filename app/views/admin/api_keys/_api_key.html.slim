@@ -1,7 +1,7 @@
 tr
   td = api_key.name
   td = api_key.key
-  td = api_key.user.email
+  td = link_to api_key.user.email, filter: api_key.user.email
   td
     /= link_to 'Edit', edit_admin_api_key_path(api_key), class: "btn edit-key-button", method: :get
     = link_to 'Revoke', admin_api_key_path(api_key), data: {:confirm => 'Are you sure?'}, :method => :delete, class: "waves-effect waves-light red darken-2 btn"
