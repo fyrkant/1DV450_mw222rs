@@ -1,7 +1,6 @@
-.form
-  h2
-    | Sign up
-  = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+.form.row
+  = form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "col s6 offset-s3"}) do |f|
+    h2 Sign up
     = devise_error_messages!
     .field
       = f.label :email
@@ -21,5 +20,4 @@
       br
       = f.password_field :password_confirmation, autocomplete: "off"
     .actions
-      = f.submit "Sign up"
-  = render "devise/shared/links"
+      = f.submit "Sign up", class: "waves-effect waves-light btn right"

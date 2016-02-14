@@ -2,5 +2,11 @@
 // @import "base/base";
 // @import "neat";
 @import "flash";
+@import "materialize/components/color";
+@import "color";
 @import "materialize";
 // @import "scaffolds";
+
+.container {
+  height: 100%;
+}

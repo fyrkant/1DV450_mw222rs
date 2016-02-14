@@ -1,0 +1,12 @@
+nav
+  .nav-wrapper.container
+    ul#nav-mobile.right
+      - if current_user
+        li Logged in as #{current_user.email} #{link_to "Sign out", destroy_user_session_path, method: :delete, class: "waves-effect btn"}
+      - else
+        li
+          = link_to_unless_current "Home", root_path do
+        li
+          = link_to_unless_current "Sign in", new_user_session_path do
+        /li
+          /= link_to_unless_current "Sign up", new_user_registration_path do
