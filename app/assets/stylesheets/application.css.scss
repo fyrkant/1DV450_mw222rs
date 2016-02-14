@@ -1,11 +1,7 @@
-// @import "bourbon";
-// @import "base/base";
-// @import "neat";
 @import "flash";
 @import "materialize/components/color";
-@import "color";
+@import "variables";
 @import "materialize";
-// @import "scaffolds";
 
 .container {
   height: 100%;
