@@ -19,5 +19,6 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :api_keys, except: [:new, :create, :edit]
+    get "search", to: "api_keys#search"
   end
 end

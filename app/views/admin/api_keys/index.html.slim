@@ -3,7 +3,7 @@ form
   .row
     .input-field.col.s6
       i.mdi-action-search.prefix
-      input#icon_prefix.validate type="text" value=("#{params[:keyword]}") name="keyword" /
+      input#search-key-input.validate type="text" value=("#{params[:keyword]}") name="keyword" /
       label for="icon_prefix"  Search for application name
 
 - if @api_keys.size > 0

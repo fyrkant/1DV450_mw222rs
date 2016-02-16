@@ -8,6 +8,10 @@ class Admin::ApiKeysController < ApplicationController
                       .filter(params[:filter])
   end
 
+  def search
+    render json: ApiKey.includes(:user).search(params[:term]).pluck(:name)
+  end
+
   def destroy
     @api_key.destroy
     respond_to do |format|
