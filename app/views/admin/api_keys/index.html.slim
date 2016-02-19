@@ -7,18 +7,9 @@ form
       label for="icon_prefix"  Search for application name
 
 - if @api_keys.size > 0
-  table
-    thead
-      tr
-        th App Name
-        th Key
-        - if current_user.admin?
-          th App Creator
-        th
-
-    tbody
+  .row
+    .col.s12
       = render @api_keys
 
-  br
 - else
   p No API keys found.
