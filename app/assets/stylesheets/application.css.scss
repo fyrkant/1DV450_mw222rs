@@ -8,6 +8,10 @@
   height: 100%;
 }
 
-.key-kard {
-  padding-right: 5px;
+@media #{$large-and-up} {
+  .key-card {
+      margin: 0.5rem 0.5rem 1rem 0;
+      min-width: 47%;
+      max-width: 47%;
+  }
 }
