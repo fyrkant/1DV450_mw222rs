@@ -9,7 +9,7 @@ class Admin::ApiKeysController < ApplicationController
   end
 
   def search
-    render json: ApiKey.includes(:user).search(params[:term]).pluck(:name)
+    render json: ApiKey.search(params[:term]).pluck(:name)
   end
 
   def destroy
