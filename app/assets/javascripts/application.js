@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery-ui/effect-fade
+//= require jquery-ui/effect-highlight
 //= require jquery-ui/autocomplete
 //= require materialize-sprockets
 //= require jquery_ujs
