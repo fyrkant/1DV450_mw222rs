@@ -1,5 +1,6 @@
-h1 Listing of your API keys
-= link_to 'Create a New API key', new_api_key_path, class: "new-key-button btn"
+span
+  h3 Listing of your API keys
+  = link_to 'Create a New API key', new_api_key_path, class: "new-key-button btn"
 - if @api_keys.size > 0
   .row
     .col.s12

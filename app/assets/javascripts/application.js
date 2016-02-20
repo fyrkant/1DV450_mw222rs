@@ -11,9 +11,11 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery-ui
+//= require jquery-ui/effect-fade
+//= require jquery-ui/autocomplete
 //= require materialize-sprockets
 //= require jquery_ujs
 //= require turbolinks
+//= require zeroclipboard
 //= require_tree .
 

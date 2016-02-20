@@ -1,5 +1,7 @@
-h1 New api_key
-
-== render 'form'
-
-= link_to 'Back', api_keys_path
+.row.centerer
+  .card.col.s12.l6.offset-l3
+    .card-content
+      span.card-title New API Key
+      == render 'form'
+    .card-action
+      = link_to 'Back', api_keys_path
