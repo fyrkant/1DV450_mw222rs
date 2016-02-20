@@ -1,8 +1,8 @@
-h1 Editing api_key
-
-== render 'form'
-
-= link_to 'Show', @api_key
-'|
-= link_to 'Back', api_keys_path
+.row.centerer
+  .card.col.s12.l6.offset-l3
+    .card-content
+      span.card-title Editing API Key
+      == render 'form'
+    .card-action
+      = link_to 'Back', api_keys_path
 

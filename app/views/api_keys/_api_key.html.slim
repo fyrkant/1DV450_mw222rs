@@ -1,6 +1,9 @@
-tr
-  td = api_key.name
-  td = api_key.key
-  td
-    = link_to 'Edit', edit_api_key_path(api_key), class: "btn edit-key-button", method: :get
-    = link_to 'Remove', api_key, data: {:confirm => 'Are you sure?'}, :method => :delete, class: "remove-key-button btn"
+.card.col.s12.l6.key-card
+  .card-content
+    span.card-title = api_key.name
+    p
+      strong Key:
+      = api_key.key
+  .card-action
+    = link_to 'Edit', edit_api_key_path(api_key), class: "waves-effect waves-light blue btn", method: :get
+    = link_to 'Remove', api_key, data: {:confirm => 'Are you sure?'}, :method => :delete, class: "waves-effect waves-light red darken-2 btn"
