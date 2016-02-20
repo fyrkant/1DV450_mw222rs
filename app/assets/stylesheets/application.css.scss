@@ -4,7 +4,6 @@
 @import "materialize";
 @import "autocomplete";
 @import "jquery-ui";
-
 html, body {
   height: 100%;
 }
@@ -19,6 +18,16 @@ html, body {
 .card {
   .btn {
     margin-right: 0.5rem;
+  }
+}
+
+span.header-thing {
+  h3 {
+    line-height: 2.5em;
+    display: inline;
+  }
+  .btn-floating.btn-large {
+    margin-top: -1em;
   }
 }
 

@@ -4,7 +4,7 @@
     p
       strong Key:
       blockquote id="api-key-text-#{api_key.id}" = api_key.key
-      button.clip-button.btn data-clipboard-target="api-key-text-#{api_key.id}" Save key to clipboard
+      button.clip-button.btn data-clipboard-target="api-key-text-#{api_key.id}" Copy key to clipboard
   .card-action
     = link_to 'Edit', edit_api_key_path(api_key), class: "waves-effect waves-light blue btn", method: :get
     = link_to 'Remove', api_key, data: {:confirm => 'Are you sure?'}, :method => :delete, class: "waves-effect waves-light red darken-2 btn"
