@@ -27,6 +27,7 @@ class ApiKeysControllerTest < ActionController::TestCase
   end
 
   test "should show api_key" do
+    skip "show route not needed for now, maybe later when data about usage can be shown"
     get :show, id: @api_key
     assert_response :success
   end
@@ -38,7 +39,7 @@ class ApiKeysControllerTest < ActionController::TestCase
 
   test "should update api_key" do
     patch :update, id: @api_key, api_key: { key: @api_key.key, name: @api_key.name }
-    assert_redirected_to api_key_path(assigns(:api_key))
+    assert_redirected_to root_path
   end
 
   test "should destroy api_key" do
