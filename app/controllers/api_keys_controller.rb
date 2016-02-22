@@ -5,7 +5,7 @@ class ApiKeysController < ApplicationController
   # GET /api_keys
   # GET /api_keys.json
   def index
-    @api_keys = current_user.admin? ? ApiKey.all : current_user.api_keys
+    @api_keys = current_user.api_keys
   end
 
   # GET /api_keys/1
@@ -68,7 +68,7 @@ class ApiKeysController < ApplicationController
 
   def set_api_key
     key = ApiKey.find(params[:id])
-    @api_key = if key.user == current_user || current_user.admin?
+    @api_key = if key.user == current_user
                  key
                else
                  redirect_to root_path

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     authenticated :user, lambda(&:admin?) do
+      get "api_keys", to: redirect("admin/api_keys")
       root 'admin/api_keys#index'
     end
 
@@ -18,7 +19,8 @@ Rails.application.routes.draw do
   resources :api_keys, except: :show
 
   namespace :admin do
-    resources :api_keys, except: [:new, :create, :edit]
+    resources :api_keys, except: [:new, :show, :create, :edit]
+
     get "search", to: "api_keys#search"
   end
 end
