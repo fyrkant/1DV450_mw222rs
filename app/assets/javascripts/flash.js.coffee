@@ -1,9 +1,9 @@
 $ ->
   $('#flash').on 'click', (e) ->
     e.preventDefault()
-    $(this).fadeOut()
+    $(this).slideUp()
 
   timeout = () ->
-    $('#flash').fadeOut()
+    $('#flash').slideUp()
 
   setTimeout(timeout, 5000)
