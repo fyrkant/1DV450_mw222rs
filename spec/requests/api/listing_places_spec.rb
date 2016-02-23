@@ -12,7 +12,7 @@ RSpec.describe "ListingPlaces" do
     it "lists all places" do
       get "/api/places"
 
-      json = JSON.parse(response.body, symbolize_names: true)
+      json = json(response.body)
       expect(response).to have_http_status 200
       expect(json.length).to eq 2
     end
