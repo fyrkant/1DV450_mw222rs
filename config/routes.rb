@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :api do
+    resources :places
+  end
+
   devise_for :users
 
   devise_scope :user do
