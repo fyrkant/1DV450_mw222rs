@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   namespace :api do
-    resources :places
+    namespace :v1 do
+      resources :places
+      resources :events
+    end
   end
 
   devise_for :users
