@@ -1,5 +1,5 @@
 class EventSerializer < ActiveModel::Serializer
   attributes :id, :name, :description
 
-  belongs_to :place
+  has_one :place, embed: :id
 end

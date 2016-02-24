@@ -4,6 +4,7 @@ start = Time.current
 
 User.destroy_all
 ApiKey.destroy_all
+Place.destroy_all
 
 test_password = "testpass"
 
@@ -36,5 +37,25 @@ p "Created #{User.count - 1} users" # the minus is the admin...
 end
 
 p "Created #{ApiKey.count} api keys"
+
+10.times do
+  Place.create!(
+    name: Faker::Address.street_name + Faker::Address.secondary_address,
+    lat: Faker::Address.latitude,
+    lng: Faker::Address.longitude
+  )
+end
+
+p "Created #{Place.count} places"
+
+10.times do
+  Event.create!(
+    name: Faker::Hipster.words(3).join(" "),
+    description: Faker::Hipster.sentence(6),
+    place_id: Place.all.ids.sample
+  )
+end
+
+p "Created #{Event.count} events"
 
 p "Seed created in #{(Time.current - start).round(2)} seconds"

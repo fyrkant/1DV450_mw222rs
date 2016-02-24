@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe Api::PlacesController, type: :controller do
+RSpec.describe Api::V1::PlacesController, type: :controller do
 
 end

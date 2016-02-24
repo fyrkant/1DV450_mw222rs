@@ -25,7 +25,7 @@ RSpec.describe "Listing events" do
 
       json = json(response.body)
       expect(json[:event][:name]).to eq event1.name
-      expect(json[:event][:place]).to eq place1.id
+      expect(json[:event][:place_id]).to eq place1.id
     end
   end
 end
