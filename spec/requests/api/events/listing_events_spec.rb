@@ -4,6 +4,10 @@ RSpec.describe "Listing events" do
   let!(:place1) { Place.create!(name: "Some place", lat: 12.34, lng: 34.45) }
   let!(:event1) { Event.create!(name: "Party!", description: "Lorem ipsum dolores whatever", place: place1, date: 10.day.from_now) }
   let!(:event2) { Event.create!(name: "Party two!", description: "Lorem ipsum dolores whatever", place: place1, date: 7.days.from_now) }
+  let!(:event3) { Event.create!(name: "Taco party!", description: "Lorem ipsum dolores whatever", place: place1, date: 7.days.from_now) }
+  let!(:event4) { Event.create!(name: "Fiesta una sushi", description: "Lorem ipsum dolores whatever", place: place1, date: 7.days.from_now) }
+  let!(:event5) { Event.create!(name: "Bonenkai", description: "Lorem ipsum dolores whatever", place: place1, date: 7.days.from_now) }
+  let!(:event6) { Event.create!(name: "Birthday party", description: "Lorem ipsum dolores whatever", place: place1, date: 7.days.from_now) }
 
   describe "list all events" do
     it "lists all events" do
@@ -13,7 +17,7 @@ RSpec.describe "Listing events" do
       expect(response.content_type).to eq Mime::JSON
 
       json = json(response.body)
-      expect(json[:data].length).to eq 2
+      expect(json[:data].length).to eq 6
     end
   end
   it "sorts events on date" do
@@ -25,6 +29,24 @@ RSpec.describe "Listing events" do
     events = json(response.body)[:data]
 
     expect(events.first[:attributes][:name]).to eq "Party two!"
+  end
+  it "searches with search query string" do
+    get "/api/events?search=party"
+
+      expect(response).to have_http_status 200
+      expect(response.content_type).to eq Mime::JSON
+
+      json = json(response.body)
+      expect(json[:data].length).to eq 4
+  end
+  it "is a fuzzy search" do
+    get "/api/events?search=arty"
+
+      expect(response).to have_http_status 200
+      expect(response.content_type).to eq Mime::JSON
+
+      json = json(response.body)
+      expect(json[:data].length).to eq 4
   end
   describe "get single event" do
     it "show a single event" do

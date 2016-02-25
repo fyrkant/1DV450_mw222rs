@@ -1,6 +1,6 @@
 class Api::V1::EventsController < Api::BaseController
   def index
-    events = Event.all.order(:date)
+    events = Event.search(params[:search]).order(:date)
     render json: events, status: 200
   end
 
