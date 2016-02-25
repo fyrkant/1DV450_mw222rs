@@ -39,7 +39,7 @@ end
 
 p "Created #{ApiKey.count} api keys"
 
-10.times do
+100.times do
   Place.create!(
     name: Faker::Address.street_name + Faker::Address.secondary_address,
     lat: Faker::Address.latitude,
@@ -49,12 +49,12 @@ end
 
 p "Created #{Place.count} places"
 
-10.times do
+100.times do |i|
   Event.create!(
     name: Faker::Hipster.words(3).join(" "),
     description: Faker::Hipster.sentence(6),
     date: rand(300).days.from_now,
-    place_id: Place.all.ids.sample
+    place_id: Place.find(Place.first.id + i).id
   )
 end
 

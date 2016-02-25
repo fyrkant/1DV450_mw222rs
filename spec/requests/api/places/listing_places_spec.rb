@@ -13,7 +13,7 @@ RSpec.describe "ListingPlaces" do
       expect(response.content_type).to eq Mime::JSON
 
       json = json(response.body)
-      expect(json[:places].length).to eq 2
+      expect(json[:data].length).to eq 2
     end
   end
   describe "get single place" do
@@ -24,7 +24,7 @@ RSpec.describe "ListingPlaces" do
       expect(response.content_type).to eq Mime::JSON
 
       json = json(response.body)
-      expect(json[:place][:name]).to eq place1.name
+      expect(json[:data][:attributes][:name]).to eq place1.name
     end
     it "returns 404 and error object when requesting non-existent resource" do
       get "/api/places/2023124235042934"

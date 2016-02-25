@@ -8,11 +8,11 @@ RSpec.describe "Creating events" do
          "Content-Type" => "application/json"
     expect(response).to have_http_status 201
 
-    event = json(response.body)[:event]
-    expect(event[:name]).to eq event_attributes[:name]
-    expect(event[:description]).to eq event_attributes[:description]
-    expect(event[:date].to_time).to eq event_attributes[:date]
-    expect(event[:place_id]).to eq event_attributes[:place_id]
+    event = json(response.body)[:data]
+    expect(event[:attributes][:name]).to eq event_attributes[:name]
+    expect(event[:attributes][:description]).to eq event_attributes[:description]
+    expect(event[:attributes][:date].to_time).to eq event_attributes[:date]
+    expect(event[:relationships][:place][:data][:id].to_i).to eq event_attributes[:place_id]
   end
   it "fails when parameter is missing" do
     post "/api/events", { event: { name: "TestingEvent", description: nil } }.to_json,

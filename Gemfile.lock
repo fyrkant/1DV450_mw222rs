@@ -1,3 +1,12 @@
+GIT
+  remote: git://github.com/rails-api/active_model_serializers.git
+  revision: 7f25c580d8d61a060d636b959a0fb56d60edc534
+  specs:
+    active_model_serializers (0.10.0.rc4)
+      actionpack (>= 4.0)
+      activemodel (>= 4.0)
+      railties (>= 4.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -20,8 +29,6 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
-    active_model_serializers (0.8.3)
-      activemodel (>= 3.0)
     activejob (4.2.5)
       activesupport (= 4.2.5)
       globalid (>= 0.3.0)
@@ -98,6 +105,9 @@ GEM
     jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
     json (1.8.3)
+    kaminari (0.16.3)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     listen (3.0.5)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
@@ -240,7 +250,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_model_serializers (~> 0.8.0)
+  active_model_serializers!
   byebug
   coffee-rails (~> 4.1.0)
   devise (~> 3.5, >= 3.5.6)
@@ -249,6 +259,7 @@ DEPENDENCIES
   guard-livereload (~> 2.4)
   jquery-rails
   jquery-ui-rails
+  kaminari
   materialize-sass
   pg
   puma

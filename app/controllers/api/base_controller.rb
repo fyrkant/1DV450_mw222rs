@@ -10,4 +10,5 @@ class Api::BaseController < ApplicationController
   def not_found
     render json: { status: 404, detail: "Resource for '#{request.original_fullpath}' could not be found" }, status: 404
   end
+
 end

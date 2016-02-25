@@ -21,8 +21,9 @@ gem "turbolinks"
 # gem "jbuilder", "~> 2.0"
 gem "devise", "~> 3.5", ">= 3.5.6"
 gem "faker"
-gem "active_model_serializers", "~> 0.8.0"
+gem "active_model_serializers", github: "rails-api/active_model_serializers"
 
+gem "kaminari"
 gem "sdoc", "~> 0.4.0", group: :doc
 
 gem "rails_12factor", group: :production
