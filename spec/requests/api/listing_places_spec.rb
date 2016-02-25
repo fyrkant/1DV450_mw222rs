@@ -7,7 +7,7 @@ RSpec.describe "ListingPlaces" do
 
   describe "list all places" do
     it "lists all places" do
-      get "/api/v1/places"
+      get "/api/places"
 
       expect(response).to have_http_status 200
       expect(response.content_type).to eq Mime::JSON
@@ -17,8 +17,8 @@ RSpec.describe "ListingPlaces" do
     end
   end
   describe "get single place" do
-    it "shows a single place" do
-      get "/api/v1/places/#{place1.id}"
+    it "returns existing resource" do
+      get "/api/places/#{place1.id}"
 
       expect(response).to have_http_status 200
       expect(response.content_type).to eq Mime::JSON
@@ -26,11 +26,15 @@ RSpec.describe "ListingPlaces" do
       json = json(response.body)
       expect(json[:place][:name]).to eq place1.name
     end
-    it "returns status 404 when requesting non-existent resource" do
-      get "/api/v1/places/2023124235042934"
+    it "returns 404 and error object when requesting non-existent resource" do
+      get "/api/places/2023124235042934"
 
       expect(response).to have_http_status 404
       expect(response.content_type).to eq Mime::JSON
+
+      json = json(response.body)
+      expect(json[:status]).to eq 404
+      expect(json[:detail]).to eq "Resource for '/api/places/2023124235042934' could not be found"
     end
   end
 end

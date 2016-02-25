@@ -1,4 +1,4 @@
-class Api::V1::PlacesController < Api::V1::BaseController
+class Api::V1::PlacesController < Api::BaseController
   def index
     places = Place.all
     render json: places, status: 200

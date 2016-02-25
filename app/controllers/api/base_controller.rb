@@ -1,4 +1,4 @@
-class Api::V1::BaseController < ApplicationController
+class Api::BaseController < ApplicationController
   protect_from_forgery with: :null_session
   before_action :destroy_session
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
@@ -8,6 +8,6 @@ class Api::V1::BaseController < ApplicationController
   end
 
   def not_found
-    render json: "Not found", status: 404
+    render json: { status: 404, detail: "Resource for '#{request.original_fullpath}' could not be found" }, status: 404
   end
 end

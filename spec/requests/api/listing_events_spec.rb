@@ -7,7 +7,7 @@ RSpec.describe "Listing events" do
 
   describe "list all events" do
     it "lists all events" do
-      get "/api/v1/events"
+      get "/api/events"
 
       expect(response).to have_http_status 200
       expect(response.content_type).to eq Mime::JSON
@@ -18,7 +18,7 @@ RSpec.describe "Listing events" do
   end
   describe "get single event" do
     it "show a single event" do
-      get "/api/v1/events/#{event1.id}"
+      get "/api/events/#{event1.id}"
 
       expect(response).to have_http_status 200
       expect(response.content_type).to eq Mime::JSON
@@ -26,6 +26,16 @@ RSpec.describe "Listing events" do
       json = json(response.body)
       expect(json[:event][:name]).to eq event1.name
       expect(json[:event][:place_id]).to eq place1.id
+    end
+    it "returns 404 and error object when requesting non-existent resource" do
+      get "/api/events/99999999999999"
+
+      expect(response).to have_http_status 404
+      expect(response.content_type).to eq Mime::JSON
+
+      json = json(response.body)
+      expect(json[:status]).to eq 404
+      expect(json[:detail]).to eq "Resource for '/api/events/99999999999999' could not be found"
     end
   end
 end
