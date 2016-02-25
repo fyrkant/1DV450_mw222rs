@@ -1,8 +1,8 @@
 require "rails_helper"
 
 RSpec.describe "Delete event" do
-  let!(:event1) { Event.create!(name: "My cool event #1", description: "Lorem ipsum dolor sit amet, consectetur.") }
-  let!(:event2) { Event.create!(name: "My cool event #2", description: "Lorem ipsum dolor sit amet, consectetur adipisicing.") }
+  let!(:event1) { Event.create!(name: "My cool event #1", description: "Lorem ipsum dolor sit amet, consectetur.", date: rand(300).days.from_now) }
+  let!(:event2) { Event.create!(name: "My cool event #2", description: "Lorem ipsum dolor sit amet, consectetur adipisicing.", date: rand(300).days.from_now) }
   it "deletes a Event with a post and returns correct status" do
     expect(Event.count).to eq 2
 

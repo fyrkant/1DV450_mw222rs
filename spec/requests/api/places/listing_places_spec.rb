@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe "ListingPlaces" do
   let!(:place1) { Place.create!(name: "Some place", lat: 12.34, lng: 34.45) }
   let!(:place2) { Place.create!(name: "Another place", lat: 23.2233, lng: 23.344) }
-  let!(:event1) { Event.create!(name: "Party!", description: "Lorem ipsum dolores whatever", place: place1) }
+  let!(:event1) { Event.create!(name: "Party!", description: "Lorem ipsum dolores whatever", place: place1, date: rand(300).days.from_now) }
 
   describe "list all places" do
     it "lists all places" do

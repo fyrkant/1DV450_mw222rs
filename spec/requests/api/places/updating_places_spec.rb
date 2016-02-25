@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe "Updating places" do
   let!(:place) { Place.create!(name: "TestingPlace", lat: 23, lng: 32) }
-  let!(:event) { Event.create!(name: "Cool event", description: "my awesome event is awesome") }
+  let!(:event) { Event.create!(name: "Cool event", description: "my awesome event is awesome", date: rand(300).days.from_now) }
   it "updates a place" do
     put "/api/places/#{place.id}", { place: { name: "NewName", lat: 23, lng: 32 } }.to_json,
         "Accept" => "application/json", "Content-Type" => "application/json"

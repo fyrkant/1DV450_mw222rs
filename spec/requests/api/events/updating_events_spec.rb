@@ -6,6 +6,7 @@ RSpec.describe "Updating events" do
     Event.create!(
       name: "Cool event",
       description: "my awesome event is awesome",
+      date: 3.days.from_now,
       place_id: place.id)
   end
   it "updates an event" do
@@ -14,6 +15,7 @@ RSpec.describe "Updating events" do
           event: {
             name: "NewName",
             description: event.description,
+            date: 3.days.from_now,
             place_id: event.place_id }
         }.to_json,
         "Accept" => "application/json", "Content-Type" => "application/json"

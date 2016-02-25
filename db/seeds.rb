@@ -53,6 +53,7 @@ p "Created #{Place.count} places"
   Event.create!(
     name: Faker::Hipster.words(3).join(" "),
     description: Faker::Hipster.sentence(6),
+    date: rand(300).days.from_now,
     place_id: Place.all.ids.sample
   )
 end
