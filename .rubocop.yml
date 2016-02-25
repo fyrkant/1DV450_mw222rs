@@ -23,9 +23,7 @@ Rails:
   Enabled: true
 
 Metrics/LineLength:
-  Max: 120
-  Exclude:
-    - "config/**/*"
+  Enabled: false
 
 Style/ClassAndModuleChildren:
   Enabled: false

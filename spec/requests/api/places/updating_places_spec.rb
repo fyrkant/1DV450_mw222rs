@@ -22,9 +22,11 @@ RSpec.describe "Updating places" do
     expect(place.lng).to eq 32
   end
   it "fails on update with missing parameters" do
-    put "/api/places/#{place.id}", { place: { name: nil, lat: 23, lng: 32} }.to_json,
+    put "/api/places/#{place.id}", { place: { name: nil, lat: 23, lng: 32 } }.to_json,
         "Accept" => "application/json", "Content-Type" => "application/json"
 
     expect(response).to have_http_status 422
+    errors = json(response.body)
+    expect(errors[:name]).to include "can't be blank"
   end
 end
