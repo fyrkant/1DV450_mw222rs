@@ -6,6 +6,7 @@ User.destroy_all
 ApiKey.destroy_all
 Place.destroy_all
 Event.destroy_all
+Tag.destroy_all
 
 test_password = "testpass"
 
@@ -49,11 +50,18 @@ end
 
 p "Created #{Place.count} places"
 
+10.times do
+  Tag.create!(name: Faker::Hipster.word)
+end
+
+p "Created #{Tag.count} tags"
+
 100.times do |i|
   Event.create!(
     name: Faker::Hipster.words(3).join(" "),
     description: Faker::Hipster.sentence(6),
     date: rand(300).days.from_now,
+    tags: [Tag.find(Tag.last.id - rand(10))],
     place_id: Place.find(Place.first.id + i).id
   )
 end

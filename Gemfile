@@ -6,9 +6,6 @@ gem "rails", "4.2.5"
 gem "pg"
 
 gem "sass-rails", "~> 5.0"
-# Bourbon is a sass utility library and neat is a cool grid.
-# gem "bourbon"
-# gem "neat"
 gem "materialize-sass"
 
 gem "slim-rails"
@@ -23,7 +20,7 @@ gem "devise", "~> 3.5", ">= 3.5.6"
 gem "faker"
 gem "active_model_serializers", github: "rails-api/active_model_serializers"
 
-gem "kaminari"
+gem 'kaminari', '~> 0.16.1'
 gem "sdoc", "~> 0.4.0", group: :doc
 
 gem "rails_12factor", group: :production
