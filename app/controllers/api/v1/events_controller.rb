@@ -2,9 +2,9 @@ class Api::V1::EventsController < Api::BaseController
   before_action :set_pagination_vars, only: :index
   def index
     events = Event.search(params[:search])
-      .tagged(params[:tag])
-      .order(:date)
-      .page(@number).per(@size)
+                  .tagged(params[:tag])
+                  .order(:date)
+                  .page(@number).per(@size)
 
     render json: events, status: 200
   end
@@ -28,8 +28,8 @@ class Api::V1::EventsController < Api::BaseController
   end
 
   def show
-    @event = Event.find(params[:id])
-    render json: @event, status: 200
+    event = Event.find(params[:id])
+    render json: event, include: "*", status: 200
   end
 
   def destroy
@@ -39,11 +39,14 @@ class Api::V1::EventsController < Api::BaseController
   end
 
   private
+
   def set_pagination_vars
     if params[:page]
-      @number, @size = [params[:page][:number], params[:page][:size]]
+      @number = params[:page][:number]
+      @size = params[:page][:size]
     else
-      @number, @size = [1, Event.count]
+      @number = 1
+      @size = Event.count
     end
   end
 
