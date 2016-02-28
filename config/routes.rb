@@ -4,7 +4,7 @@ Rails.application.routes.draw do
       resources :places
       resources :events
       resources :tags do
-        resources :events, only: :index
+        resources :events
       end
     end
   end

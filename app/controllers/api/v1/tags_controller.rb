@@ -3,10 +3,12 @@ class Api::V1::TagsController < Api::BaseController
     tags = Tag.all
     render json: tags, status: 200
   end
+
   def show
     tag = Tag.find(params[:id])
     render json: tag, status: 200
   end
+
   def create
     tag = Tag.new(tag_params)
     if tag.save
@@ -15,6 +17,7 @@ class Api::V1::TagsController < Api::BaseController
       render json: tag.errors, status: 422
     end
   end
+
   def update
     tag = Tag.find(params[:id])
     if tag.update(tag_params)
@@ -23,6 +26,7 @@ class Api::V1::TagsController < Api::BaseController
       render json: tag.errors, status: 422
     end
   end
+
   def destroy
     tag = Tag.find(params[:id])
     tag.destroy
