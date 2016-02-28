@@ -2,11 +2,11 @@ class Api::V1::EventsController < Api::BaseController
   before_action :set_pagination_vars, only: :index
   def index
     events = Event.search(params[:search])
-                  .tagged(params[:tag])
+                  .tagged(params[:tag_id])
                   .order(:date)
                   .page(@number).per(@size)
 
-    render json: events, status: 200
+    render json: events, location: "hello", status: 200
   end
 
   def create

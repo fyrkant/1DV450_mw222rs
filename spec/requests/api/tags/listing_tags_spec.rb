@@ -2,7 +2,10 @@ require "rails_helper"
 
 RSpec.describe "Lists all tags" do
   let!(:tag1) { Tag.create!(name: "concert") }
-  let!(:tag2) { Tag.create!(name: "corporate") }
+  let!(:tag2) { Tag.create!(name: "codeconf") }
+  let!(:event1) { Event.create!(name: "Lollapalooza", description: "Lorem ipsum dolor sit amet.", date: 2.months.from_now, tags: [] << tag1) }
+  let!(:event2) { Event.create!(name: "Woodstock", description: "Lorem ipsum dolor sit amet.", date: 2.months.from_now, tags: [] << tag1) }
+  let!(:event3) { Event.create!(name: "RubyConf", description: "Lorem ipsum dolor sit amet.", date: 2.months.from_now, tags: [] << tag2) }
   it "lists all tags" do
     get "/api/tags"
 
@@ -20,6 +23,15 @@ RSpec.describe "Lists all tags" do
 
     tag = json(response.body)[:data]
     expect(tag[:attributes][:name]).to eq tag1.name
+  end
+  it "lists tagges events" do
+    get "/api/tags/#{tag1.id}/events"
+
+    expect(response).to have_http_status 200
+    expect(response.content_type).to eq Mime::JSON
+
+    events = json(response.body)[:data]
+    expect(events.size).to eq 2
   end
   it "returns 404 when request non-existent resource" do
     get "/api/tags/9999999999"

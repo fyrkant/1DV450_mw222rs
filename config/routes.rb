@@ -3,7 +3,9 @@ Rails.application.routes.draw do
     namespace :v1, path: "/" do
       resources :places
       resources :events
-      resources :tags
+      resources :tags do
+        resources :events, only: :index
+      end
     end
   end
 
