@@ -1,6 +1,8 @@
+require "api_version"
+
 Rails.application.routes.draw do
   namespace :api do
-    namespace :v1, path: "/" do
+    scope module: :v1, constraints: ApiVersion.new("v1", true) do
       resources :places
       resources :events
       resources :tags do
