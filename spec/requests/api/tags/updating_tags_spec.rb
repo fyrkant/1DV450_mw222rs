@@ -1,9 +1,9 @@
 require "rails_helper"
 
 RSpec.describe "Updating tags" do
-  let!(:tag) { Tag.create!( name: "concert") }
+  let!(:tag) { Tag.create!(name: "concert") }
   it "updates a tag" do
-    put "/api/tags/#{tag.id}", { tag: { name: "metal-concert"} }.to_json,
+    put "/api/tags/#{tag.id}", { tag: { name: "metal-concert" } }.to_json,
         "Accept" => "application/json", "Content-Type" => "application/json"
 
     expect(response).to have_http_status 200
@@ -26,5 +26,4 @@ RSpec.describe "Updating tags" do
     errors = json(response.body)
     expect(errors[:name]).to include "can't be blank"
   end
-
 end

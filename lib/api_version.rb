@@ -11,7 +11,6 @@ class ApiVersion
   private
 
   def check_headers(headers)
-    accept = headers["Accept"]
-    accept && accept.include?("application/vnd.eventerapi.#{@version}+json")
+    headers["Accept"]&.include?("application/vnd.eventerapi.#{@version}+json")
   end
 end

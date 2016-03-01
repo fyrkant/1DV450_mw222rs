@@ -11,7 +11,7 @@ RSpec.describe "Creating events" do
     event = json(response.body)[:data]
     expect(event[:attributes][:name]).to eq event_attributes[:name]
     expect(event[:attributes][:description]).to eq event_attributes[:description]
-    expect(event[:attributes][:date].to_time).to eq event_attributes[:date]
+    expect(Time.zone.parse(event[:attributes][:date]).getutc).to eq event_attributes[:date]
     expect(event[:relationships][:place][:data][:id].to_i).to eq event_attributes[:place_id]
   end
   it "fails when parameter is missing" do

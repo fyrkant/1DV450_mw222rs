@@ -30,10 +30,8 @@ class ApiKeysController < ApplicationController
     respond_to do |format|
       if @api_key.save
         format.html { redirect_to @api_key, notice: "API key was successfully created." }
-        format.json { render :show, status: :created, location: @api_key }
       else
         format.html { render :new }
-        format.json { render json: @api_key.errors, status: :unprocessable_entity }
       end
     end
   end

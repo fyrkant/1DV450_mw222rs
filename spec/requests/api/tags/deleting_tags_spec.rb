@@ -20,5 +20,4 @@ RSpec.describe "Delete tag" do
     expect(errors[:status]).to eq 404
     expect(errors[:detail]).to eq "Resource for '/api/tags/9999999' could not be found"
   end
-
 end

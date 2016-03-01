@@ -1,4 +1,5 @@
 require "faker"
+Rails.logger = Logger.new(STDOUT)
 
 start = Time.current
 
@@ -17,7 +18,7 @@ User.create!(
   admin: true
 
 )
-p "Created an admin user"
+Rails.logger.info "Created an admin user"
 
 50.times do
   first_name = Faker::Name.first_name
@@ -29,7 +30,7 @@ p "Created an admin user"
   )
 end
 
-p "Created #{User.count - 1} users" # the minus is the admin...
+Rails.logger.info "Created #{User.count - 1} users" # the minus is the admin...
 
 100.times do
   ApiKey.create!(
@@ -38,7 +39,7 @@ p "Created #{User.count - 1} users" # the minus is the admin...
   )
 end
 
-p "Created #{ApiKey.count} api keys"
+Rails.logger.info "Created #{ApiKey.count} api keys"
 
 100.times do
   Place.create!(
@@ -48,13 +49,13 @@ p "Created #{ApiKey.count} api keys"
   )
 end
 
-p "Created #{Place.count} places"
+Rails.logger.info "Created #{Place.count} places"
 
 10.times do
   Tag.create!(name: Faker::Hipster.word)
 end
 
-p "Created #{Tag.count} tags"
+Rails.logger.info "Created #{Tag.count} tags"
 
 100.times do |i|
   Event.create!(
@@ -66,6 +67,6 @@ p "Created #{Tag.count} tags"
   )
 end
 
-p "Created #{Event.count} events"
+Rails.logger.info "Created #{Event.count} events"
 
-p "Seed created in #{(Time.current - start).round(2)} seconds"
+Rails.logger.info "Seed created in #{(Time.current - start).round(2)} seconds"
