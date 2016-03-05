@@ -1,4 +1,6 @@
 class Api::BaseController < ApplicationController
+  include Api::JwtHelper
+
   protect_from_forgery with: :null_session
   before_action :destroy_session
   before_action :check_api_key

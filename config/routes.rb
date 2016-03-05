@@ -3,6 +3,7 @@ require "api_version"
 Rails.application.routes.draw do
   namespace :api do
     scope module: :v1, constraints: ApiVersion.new("v1", true) do
+      post "auth", to: "end_users#authenticate"
       resources :places
       resources :events
       resources :tags do
