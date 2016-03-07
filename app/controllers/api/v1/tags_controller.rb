@@ -1,4 +1,5 @@
 class Api::V1::TagsController < Api::BaseController
+  before_action :authenticate_user!, only: :create
   def index
     tags = Tag.all
     render json: tags, status: 200
@@ -16,21 +17,6 @@ class Api::V1::TagsController < Api::BaseController
     else
       render json: tag.errors, status: 422
     end
-  end
-
-  def update
-    tag = Tag.find(params[:id])
-    if tag.update(tag_params)
-      render json: tag, status: 200
-    else
-      render json: tag.errors, status: 422
-    end
-  end
-
-  def destroy
-    tag = Tag.find(params[:id])
-    tag.destroy
-    head 204
   end
 
   private

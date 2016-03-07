@@ -9,11 +9,13 @@ RSpec.describe "Listing events" do
   let!(:event5) { Event.create!(name: "Bonenkai", description: "Lorem ipsum dolores whatever", place: place1, date: 7.days.from_now) }
   let!(:event6) { Event.create!(name: "Birthday party", description: "Lorem ipsum dolores whatever", place: place1, date: 7.days.from_now) }
 
-  let(:accept_header) { { "Accept" => "application/vnd.eventerapi.v1+json" } }
+  let(:user) { User.create!(email: "mail@test.com", password: "testpass", password_confirmation: "testpass") }
+  let(:api_key) { ApiKey.create!(name: "Cool app", user_id: user.id) }
+  let(:api_key_header) { { "X-Api-key" => api_key.key } }
 
   describe "list all events" do
     it "lists all events" do
-      get "/api/events", {}, accept_header
+      get "/api/events", {}, api_key_header
 
       expect(response).to have_http_status 200
       expect(response.content_type).to eq Mime::JSON
@@ -23,7 +25,7 @@ RSpec.describe "Listing events" do
     end
   end
   it "sorts events on date" do
-    get "/api/events", {}, accept_header
+    get "/api/events", {}, api_key_header
 
     expect(response).to have_http_status 200
     expect(response.content_type).to eq Mime::JSON
@@ -33,7 +35,7 @@ RSpec.describe "Listing events" do
     expect(events.first[:attributes][:name]).to eq "Party two!"
   end
   it "searches with search query string" do
-    get "/api/events?search=party", {}, accept_header
+    get "/api/events?search=party", {}, api_key_header
 
     expect(response).to have_http_status 200
     expect(response.content_type).to eq Mime::JSON
@@ -42,7 +44,7 @@ RSpec.describe "Listing events" do
     expect(json[:data].length).to eq 4
   end
   it "is a fuzzy search" do
-    get "/api/events?search=arty", {}, accept_header
+    get "/api/events?search=arty", {}, api_key_header
 
     expect(response).to have_http_status 200
     expect(response.content_type).to eq Mime::JSON
@@ -52,7 +54,7 @@ RSpec.describe "Listing events" do
   end
   describe "get single event" do
     it "show a single event" do
-      get "/api/events/#{event1.id}", {}, accept_header
+      get "/api/events/#{event1.id}", {}, api_key_header
 
       expect(response).to have_http_status 200
       expect(response.content_type).to eq Mime::JSON
@@ -62,7 +64,7 @@ RSpec.describe "Listing events" do
       expect(json[:data][:relationships][:place][:data][:id].to_i).to eq place1.id
     end
     it "returns 404 and error object when requesting non-existent resource" do
-      get "/api/events/99999999999999", {}, accept_header
+      get "/api/events/99999999999999", {}, api_key_header
 
       expect(response).to have_http_status 404
       expect(response.content_type).to eq Mime::JSON

@@ -1,4 +1,5 @@
 class Api::V1::EventsController < Api::BaseController
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_pagination_vars, only: :index
   def index
     events = Event.search(params[:search])
@@ -10,7 +11,7 @@ class Api::V1::EventsController < Api::BaseController
   end
 
   def create
-    event = Event.new(event_params)
+    event = current_user.events.new(event_params)
     if event.save
       render json: event, status: 201
     else
@@ -19,7 +20,7 @@ class Api::V1::EventsController < Api::BaseController
   end
 
   def update
-    event = Event.find(params[:id])
+    event = current_user.events.find(params[:id])
     if event.update(event_params)
       render json: event, status: 200
     else
@@ -33,7 +34,7 @@ class Api::V1::EventsController < Api::BaseController
   end
 
   def destroy
-    event = Event.find(params[:id])
+    event = current_user.events.find(params[:id])
     event.destroy
     head 204
   end
