@@ -3,6 +3,7 @@ class Event < ActiveRecord::Base
   scope :tagged, ->(tag_id) { joins(:tags).where("tags.id = ?", tag_id) if tag_id.present? }
 
   belongs_to :place
+  belongs_to :user
   has_many :events_tag
   has_many :tags, through: :events_tag
 
