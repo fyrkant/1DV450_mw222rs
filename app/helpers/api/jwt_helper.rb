@@ -15,6 +15,6 @@ module Api::JwtHelper
 
     # byebug
     fail OutdatedTokenError unless Time.now.to_i <= payload["expiration"]
-    payload[:end_user_id]
+    payload["end_user_id"]
   end
 end

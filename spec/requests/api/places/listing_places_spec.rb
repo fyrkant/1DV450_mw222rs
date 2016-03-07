@@ -24,7 +24,6 @@ RSpec.describe "ListingPlaces" do
 
         expect(response).to have_http_status 200
         expect(response.content_type).to eq Mime::JSON
-
         json = json(response.body)
         expect(json[:data].length).to eq 2
       end
