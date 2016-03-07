@@ -27,7 +27,7 @@ RSpec.describe "Authenticate user and get JWT" do
 
       error = json(response.body)[:message]
 
-      expect(error).to eq "Unable to find a user with those credentials"
+      expect(error).to eq "Invalid username or password"
     end
   end
 end
