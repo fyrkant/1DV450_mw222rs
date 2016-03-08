@@ -28,6 +28,7 @@ RSpec.describe "Creating events" do
       expect(event[:attributes][:description]).to eq event_attributes[:description]
       expect(Time.zone.parse(event[:attributes][:date]).getutc).to eq event_attributes[:date]
       expect(event[:relationships][:place][:data][:id].to_i).to eq event_attributes[:place_id]
+      expect(event[:relationships][:user][:data][:id].to_i).to eq user.id
     end
     it "fails when parameter is missing" do
       post "/api/events", { event: { name: "TestingEvent", description: nil } }.to_json, auth_header

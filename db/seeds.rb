@@ -63,6 +63,7 @@ Rails.logger.info "Created #{Tag.count} tags"
     description: Faker::Hipster.sentence(6),
     date: rand(300).days.from_now,
     tags: [Tag.find(Tag.last.id - rand(10))],
+    user_id: User.all.ids.sample,
     place_id: Place.find(Place.first.id + i).id
   )
 end
