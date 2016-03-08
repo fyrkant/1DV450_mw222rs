@@ -4,10 +4,8 @@ ruby "2.3.0"
 gem "rails", "4.2.5"
 # Postgres as db
 gem "pg"
-
 gem "sass-rails", "~> 5.0"
 gem "materialize-sass"
-
 gem "slim-rails"
 gem "uglifier", ">= 1.3.0"
 gem "coffee-rails", "~> 4.1.0"
@@ -16,13 +14,12 @@ gem "jquery-ui-rails"
 gem "zeroclipboard-rails"
 gem "turbolinks"
 gem "jwt"
-# gem "jbuilder", "~> 2.0"
 gem "devise", "~> 3.5", ">= 3.5.6"
 gem "faker"
-gem "active_model_serializers", github: "rails-api/active_model_serializers"
-
+gem "active_model_serializers", "~> 0.10.0.rc4", github: "rails-api/active_model_serializers"
 gem 'kaminari', '~> 0.16.1'
 gem "sdoc", "~> 0.4.0", group: :doc
+gem "geocoder", "~> 1.3.1"
 
 gem "rails_12factor", group: :production
 
@@ -32,13 +29,8 @@ gem "shoulda-matchers", group: :test
 # Use ActiveModel has_secure_password
 # gem "bcrypt", "~> 3.1.7"
 
+# Puma as development server.
 gem "puma"
-
-# Use Unicorn as the app server
-# gem "unicorn"
-
-# Use Capistrano for deployment
-# gem "capistrano-rails", group: :development
 
 group :development, :test do
   # Call "byebug" anywhere in the code to stop execution and get a debugger console
