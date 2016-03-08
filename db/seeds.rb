@@ -20,7 +20,7 @@ User.create!(
 )
 Rails.logger.info "Created an admin user"
 
-50.times do
+10.times do
   first_name = Faker::Name.first_name
   last_name = Faker::Name.last_name
   User.create!(
@@ -32,7 +32,7 @@ end
 
 Rails.logger.info "Created #{User.count - 1} users" # the minus is the admin...
 
-100.times do
+20.times do
   ApiKey.create!(
     name: Faker::App.name,
     user_id: User.all.ids.sample
@@ -41,28 +41,31 @@ end
 
 Rails.logger.info "Created #{ApiKey.count} api keys"
 
-100.times do
-  Place.create!(
-    name: Faker::Address.street_name + Faker::Address.secondary_address,
-    lat: Faker::Address.latitude,
-    lng: Faker::Address.longitude
-  )
-end
+Place.create!(
+  [
+    { name: "Stockholm, Sweden" },
+    { name: "Kalmar, Sweden" },
+    { name: "Vännäs, Sweden" },
+    { name: "Umeå, Sweden" },
+    { name: "Tokyo, Japan" },
+    { name: "Yokohama, Japan" }
+  ]
+)
 
 Rails.logger.info "Created #{Place.count} places"
 
-10.times do
+5.times do
   Tag.create!(name: Faker::Hipster.word)
 end
 
 Rails.logger.info "Created #{Tag.count} tags"
 
-100.times do |i|
+6.times do |i|
   Event.create!(
     name: Faker::Hipster.words(3).join(" "),
     description: Faker::Hipster.sentence(6),
     date: rand(300).days.from_now,
-    tags: [Tag.find(Tag.last.id - rand(10))],
+    tags: [Tag.find(Tag.last.id - rand(5))],
     user_id: User.all.ids.sample,
     place_id: Place.find(Place.first.id + i).id
   )

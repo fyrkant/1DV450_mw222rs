@@ -14,8 +14,9 @@ RSpec.describe "ListingPlaces" do
     let(:api_key) { ApiKey.create!(name: "Cool app", user_id: user.id) }
     let(:api_key_header) { { "X-Api-key" => api_key.key } }
 
-    let!(:place1) { Place.create!(name: "Some place", lat: 12.34, lng: 34.45) }
-    let!(:place2) { Place.create!(name: "Another place", lat: 23.2233, lng: 23.344) }
+    let!(:place1) { Place.create!(name: "Tokyo, Japan") }
+    let!(:place2) { Place.create!(name: "Yokohama, Japan") }
+    let!(:place3) { Place.create!(name: "Stockholm, Sweden") }
     let!(:event1) { Event.create!(name: "Party!", description: "Lorem ipsum dolores whatever", place: place1, date: rand(300).days.from_now) }
 
     describe "list all places" do
@@ -25,12 +26,21 @@ RSpec.describe "ListingPlaces" do
         expect(response).to have_http_status 200
         expect(response.content_type).to eq Mime::JSON
         json = json(response.body)
-        expect(json[:data].length).to eq 2
+        expect(json[:data].length).to eq 3
       end
     end
     describe "get single place" do
       it "returns existing resource" do
         get "/api/places/#{place1.id}", {}, api_key_header
+
+        expect(response).to have_http_status 200
+        expect(response.content_type).to eq Mime::JSON
+
+        json = json(response.body)
+        expect(json[:data][:attributes][:name]).to eq place1.name
+      end
+      it "returns places nearby" do
+        get "/api/places/#{place1.id}/nearby", {}, api_key_header
 
         expect(response).to have_http_status 200
         expect(response.content_type).to eq Mime::JSON

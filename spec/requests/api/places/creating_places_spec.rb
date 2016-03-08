@@ -18,15 +18,15 @@ RSpec.describe "Creating places" do
     end
 
     it "creates a new place" do
-      post "/api/places", { place: place_attributes }.to_json,
+      post "/api/places", { place: { name: "Umeå" } }.to_json,
            auth_header
 
       expect(response).to have_http_status 201
 
       place = json(response.body)[:data]
       expect(place[:attributes][:name]).to eq place_attributes[:name]
-      expect(place[:attributes][:lat].to_f).to eq place_attributes[:lat]
-      expect(place[:attributes][:lng].to_f).to eq place_attributes[:lng]
+      expect(place[:attributes][:lat].to_f.round(2)).to eq place_attributes[:lat]
+      expect(place[:attributes][:lng].to_f.round(2)).to eq place_attributes[:lng]
     end
     it "cannot create a place with missing parameters" do
       post "/api/places", { place: { name: nil, lat: 34.43, lng: 2 } }.to_json,
@@ -39,8 +39,8 @@ end
 
 def place_attributes
   {
-    name: "TestingPlace",
-    lat: 23.4455,
-    lng: 45.444
+    name: "Umeå",
+    lat: 63.83,
+    lng: 20.26
   }
 end
