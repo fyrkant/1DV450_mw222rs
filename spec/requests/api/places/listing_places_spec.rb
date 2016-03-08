@@ -40,13 +40,14 @@ RSpec.describe "ListingPlaces" do
         expect(json[:data][:attributes][:name]).to eq place1.name
       end
       it "returns places nearby" do
-        get "/api/places/#{place1.id}/nearby", {}, api_key_header
+        # Get places nearby Tokyo
+        get "/api/places?nearby=#{place1.id}", {}, api_key_header
 
         expect(response).to have_http_status 200
         expect(response.content_type).to eq Mime::JSON
 
-        json = json(response.body)
-        expect(json[:data][:attributes][:name]).to eq place1.name
+        json = json(response.body)[:data][0]
+        expect(json[:attributes][:name]).to eq "Yokohama, Japan"
       end
       it "returns 404 and error object when requesting non-existent resource" do
         get "/api/places/2023124235042934", {}, api_key_header

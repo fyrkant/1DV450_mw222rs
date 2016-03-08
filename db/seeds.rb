@@ -3,11 +3,11 @@ Rails.logger = Logger.new(STDOUT)
 
 start = Time.current
 
-User.destroy_all
 ApiKey.destroy_all
 Place.destroy_all
 Event.destroy_all
 Tag.destroy_all
+User.destroy_all
 
 test_password = "testpass"
 

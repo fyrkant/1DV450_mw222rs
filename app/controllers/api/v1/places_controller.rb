@@ -1,7 +1,12 @@
 class Api::V1::PlacesController < Api::BaseController
   before_action :authenticate_user!, only: :create
   def index
-    places = Place.all
+    if params[:nearby]
+      place = Place.find(params[:nearby])
+      places = place.nearbys(100)
+    else
+      places = Place.all
+    end
     render json: places, status: 200
   end
 
