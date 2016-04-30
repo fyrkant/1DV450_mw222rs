@@ -20,6 +20,7 @@ gem "active_model_serializers", "~> 0.10.0.rc4", github: "rails-api/active_model
 gem 'kaminari', '~> 0.16.1'
 gem "sdoc", "~> 0.4.0", group: :doc
 gem "geocoder", "~> 1.3.1"
+gem "rack-cors"
 
 gem "rails_12factor", group: :production
 
