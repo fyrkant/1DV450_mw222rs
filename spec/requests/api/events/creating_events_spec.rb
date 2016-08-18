@@ -18,9 +18,10 @@ RSpec.describe "Creating events" do
     end
 
     before { @place = Place.create!(name: "MyCoolPlace", lat: 23, lng: -123) }
+    before { @tag = Tag.create!(name: "Cool tag") }
 
     it "creates a new event" do
-      post "/api/events", { event: event_attributes }.to_json, auth_header
+      post "/api/events", { event: event_attributes, tags: tags_attributes }.to_json, auth_header
       expect(response).to have_http_status 201
 
       event = json(response.body)[:data]
@@ -28,6 +29,7 @@ RSpec.describe "Creating events" do
       expect(event[:attributes][:description]).to eq event_attributes[:description]
       expect(Time.zone.parse(event[:attributes][:date]).getutc).to eq event_attributes[:date]
       expect(event[:relationships][:place][:data][:id].to_i).to eq event_attributes[:place_id]
+      expect(event[:relationships][:tags][:data]).to eq [{id: @tag.id.to_s, type: "tags"}]
       expect(event[:relationships][:user][:data][:id].to_i).to eq user.id
     end
     it "fails when parameter is missing" do
@@ -43,6 +45,11 @@ def event_attributes
     name: "Testing event name",
     description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem unde veritatis aspernatur, laudantium architecto reiciendis ipsam, laboriosam qui blanditiis cupiditate nisi assumenda dolore quod neque quia aliquam dolor repellendus.",
     date: Time.new("2016-03-31 12:40").utc,
+    tags: [Array(@tag.id)],
     place_id: @place.id
   }
+end
+
+def tags_attributes
+  [@tag.id]
 end

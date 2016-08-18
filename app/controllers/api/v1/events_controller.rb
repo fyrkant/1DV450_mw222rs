@@ -12,6 +12,10 @@ class Api::V1::EventsController < Api::BaseController
 
   def create
     event = current_user.events.new(event_params)
+    tag_params&.each do |t|
+      tag = Tag.find_by(id: t)
+      event.tags << tag
+    end
     if event.save
       render json: event, status: 201
     else
@@ -52,6 +56,10 @@ class Api::V1::EventsController < Api::BaseController
   end
 
   def event_params
-    params.require(:event).permit(:name, :description, :date, :place_id)
+    params.require(:event).permit(:name, :description, :date, :tags, :place_id)
+  end
+
+  def tag_params
+    params.permit(tags: [])[:tags]
   end
 end
